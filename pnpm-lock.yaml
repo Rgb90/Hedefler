@@ -21,7 +21,7 @@ dependencies:
     specifier: ^6.1.8
     version: 6.1.8(react-dom@18.2.0)(react@18.2.0)
 
-devDependencies:
+devDependencies:npm
   '@types/react':
     specifier: ^18.2.43
     version: 18.2.47
