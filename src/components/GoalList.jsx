@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Form } from 'react-bootstrap';
-import { Button } from 'react-bootstrap';
 import styled from 'styled-components';
 
 const Wrapper = styled.div`
@@ -27,7 +26,7 @@ justify-content: space-between;
   border-radius: 5px;
   border: none;
   color: white;
-  padding: 12px;
+  padding: 7px 20px;
 `;
 
 
@@ -40,7 +39,7 @@ export function GoalList() {
         <div>
             <Wrapper>
                 <Form>
-                    <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+                    <Form.Group controlId="exampleForm.ControlInput1">
                         <Title>2024 Yılı Hedeflerim</Title>
                         <Form.Control
                             /* Input’umuzun “value” kısmını “todoInput” state’inden çekelim */
@@ -61,8 +60,15 @@ export function GoalList() {
                 Bu fonksiyonu Ekle butonumuza tıklandığı zaman çalışacak şekilde ayarlayalım
                 Fonksiyonumuz çalıştığı zaman “todos” state’imizdeki array’e, “todoInput"state’indeki değeri ekleyelim */
                     onClick={(addTodo) => {
-                        setTodos([...todos, todoInput]);
-                        setTodoInput(""); /* addTodo fonksiyonunun içerisinde setTodoInput fonksiyon çağrımını ekleyip boş
+                        if (todoInput.trim() === "") {
+                            alert("Boş hedef ekleyemezsiniz");
+                        } else if (todos.includes(todoInput)) {
+                            alert("Listede zaten var");
+                        } else {
+                            setTodos([...todos, todoInput]);
+                            setTodoInput(""); 
+                        }
+                        /* addTodo fonksiyonunun içerisinde setTodoInput fonksiyon çağrımını ekleyip boş
                         string (””) alacak şekilde ayarlamalıyız. Bu sayede input’umuzun bağlı olduğu state’i temizleyeceğiz */
                     }}
                     /* variant='success' */>
